@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1553373757664.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "150482975",
+    "id" : "30377D70",
+    "lastKnownWriteTime" : 1553375984,
+    "last_content_update" : 1553375984580,
+    "path" : "C:/Users/maryl/Urfist/dataviz_avancee/test_flextable.Rmd",
+    "project_path" : "test_flextable.Rmd",
+    "properties" : {
+        "cursorPosition" : "69,13",
+        "last_setup_crc32" : "581E069Ebb338d19",
+        "scrollLine" : "67",
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

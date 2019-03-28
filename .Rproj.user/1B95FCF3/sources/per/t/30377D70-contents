@@ -1,0 +1,91 @@
+---
+title: "test_flextable"
+author: "Marylene Henry"
+date: "23 mars 2019"
+output:
+  html_document:
+    df_print: paged
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Test
+
+
+<table>
+
+<tr>
+
+<th>Entete 1</th>
+
+<th>Entete 2</th>
+
+</tr>
+
+<tr>
+
+<td>Cellule 1 de la ligne 2</td>
+
+<td>Cellule 2 de la ligne 2</td>
+
+</tr>
+
+</table>
+
+```{r}
+library(flextable)
+library(officer)
+
+ft <- flextable(head(mtcars))
+ft <- theme_booktabs(ft)
+ft <- autofit(ft)
+doc <- read_docx()
+doc <- body_add_flextable(doc, value = ft)
+print(doc, target = "example.docx")
+```
+
+```{r, eval=T}
+library(kableExtra)
+library(flextable)
+library(officer)
+
+# a <- kable(mtcars[1:5, ], "html") %>%
+#   kable_styling("striped") %>%
+#   row_spec(1, color = "red")
+a <- flextable(head(mtcars))
+a <- theme_booktabs(ft)
+a <- autofit(ft)
+aa <- read_docx("test_flextable.docx")
+aa <- body_add_flextable(aa, value = a)
+print(aa, target = "test_flextable.docx")
+
+# 
+# kable(mtcars, "latex") %>%
+#   kable_styling(latex_options = "striped") %>%
+#   save_kable("test.png")
+```
+
+
