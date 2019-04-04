@@ -1,0 +1,1263 @@
+---
+title: "Manipulez vos donn&eacute;es avec "
+author: "Marylene Henry"
+date: "31 janvier 2019"
+output:
+  ioslides_presentation:
+    logo: "images/URFIST.jpg"
+    css: style.css
+autosize: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(htmltools)
+library(dplyr)
+library(tibble)
+options(tibble.print_max = 15)
+options(tibble.print_min = 6)
+```
+
+```{css firstpagebg, echo=FALSE}
+.title-slide {
+  background-image: url('images/dplyr.png');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: lighten;
+}
+```
+
+
+
+## **L' essentiel...** {data-background=images/fond_ecran_accueil.jpg data-background-size=cover .bigger .flexbox .vcenter}
+
+<div class="black" >
+<font size="6.8">
+
+- Dplyr : un choc de simplification pour le traitement de vos jeux de donn&eacute;es avec `R`
+
+- Les principaux verbes de Dplyr
+
+- Le Pipe : comment cha&icirc;ner vos op&eacute;rations
+
+- Jointure de tables
+
+</font>
+</div>
+
+## Dplyr - un package du tidyverse {data-background=images/tidyverse.png data-background-size=cover}
+
+
+
+## Par o&ugrave; commencer lorsque je d&eacute;bute en `R` ?
+
+<div class="columns-2">
+
+![](images/mini_tweet_dplyr.png){width=30"}
+
+<div class="green3">
+
+<br></br>
+<br></br>
+<font size="6">
+
+- Langage `R` Base ?
+
+- Le tidyverse ?
+
+</font>
+</div>
+
+</div>
+
+## Dplyr un package du Tidyverse
+
+<div class="blue3">
+Pour installer le package :
+</div>
+
+<div class="red3">
+<font size="4">
+installation du package seul
+</font>
+</div>
+```{r , eval=FALSE, echo=TRUE}
+install.packages("dplyr")
+```
+<div class="red3">
+<font size="4">
+installation de la suite tidyverse
+</font>
+</div>
+```{r , eval=FALSE, echo=TRUE}
+install.packages("tidyverse")
+```
+
+<div class="blue3">
+Charger le package
+</div>
+
+```{r , eval=FALSE, echo=TRUE}
+library(dplyr)
+# Ou
+library(tidyverse)
+```
+
+##  Version `dplyr`
+
+La version du package
+
+```{r, echo=T, eval=T}
+packageVersion("dplyr")
+
+```
+
+
+## {.flexbox .vcenter}
+![](images/mini_fight_raw_data.jpg)
+
+
+## Tibble, tbl, dataframe...
+ 
+Lorsque l'on travaille avec un jeu de donn&eacute;es, il est pr&eacute;f&eacute;rable qu'il soit de la classe tbl.
+ 
+Pour tester si une table est au format tbl:
+```{r,eval=FALSE,echo=TRUE}
+is.tbl(maTable) ou maTable %>% is.tbl
+```
+ 
+Les extensions .rds propre &agrave; `R` permettent de stocker une seule table  
+ 
++ saveRDS pour sauvegarder
++ readRDS pour lire
+ 
+## Un affichage raisonn&eacute; des donn&eacute;es 
+ 
+Les tables au format tbl permettent un affichage ma&icirc;triser de la table.
+On trouve &eacute;galement une information sur les attributs de chaque variable.
+ 
+```{r,eval=FALSE,echo=TRUE}
+options(dplyr.print_max = 20 ,dplyr.width = 50)
+maTable %>% print(n=40,width=Inf)
+```
+
+## Un exemple :
+ 
+```{r,eval=TRUE,echo=TRUE}
+iris %>% 
+  tbl_df%>% 
+    print(n=7,width=Inf)
+``` 
+
+## {.flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+Les principaux verbes de dplyr pour manipuler vos donn&eacute;es
+</div>
+</font>
+</div>
+
+## `Dplyr` : une grammaire de donn&eacute;es {.flexbox .vcenter}
+### Les 5 principaux verbes
+![](images/mini_princ_verbes.png)
+
+## `select()`: s&eacute;lection de variables
+
+S&eacute;lectionner des variables du jeu de donn&eacute;es
+```{r,eval=FALSE,echo=TRUE}
+library(dplyr)
+
+```
+
+
+```{r,eval=TRUE,echo=TRUE}
+iris2 <- as_tibble(iris)
+select(iris2,Species,Sepal.Length,Sepal.Width)
+
+
+```
+
+## `select()`: s&eacute;lection de variables {.flexbox .vcenter}
+
+![`select(table,A,B,G)`](images/Select.png)
+
+
+## `mutate()` : cr&eacute;er une nouvelle variable
+
+```{r, echo=FALSE,eval=TRUE}
+table1 <- tibble(prenom = c("Linda","Alex","Arthur"),
+                 devoir1 = c(14,13,18),
+                 devoir2 = c(12,17,10))
+ 
+```
+ 
+```{r, echo=TRUE,eval=TRUE}
+table1
+ 
+mutate(table1,moyenne_note = (devoir1+devoir2)/2)
+```
+
+## `mutate()` : cr&eacute;er une nouvelle variable {.flexbox .vcenter}
+
+![`mutate(table,Z = A + D)`](images/mini_Mutate.png)
+
+## Pour &eacute;viter d'imbriquer les `ifelse`
+### `case_when()` : &agrave; utiliser avec `mutate()`  
+
+Très utile pour cr&eacute;er une variable cat&eacute;gorielle &agrave; partir d'une variable continue
+
+```{r, echo=FALSE,eval=TRUE}
+table1 <- tibble(prenom = c("Linda","Alex","Arthur","Pierre","Sophie","Paul"),
+                 age = c(14,33,48,55,20,8)
+                 )
+ 
+```
+ 
+ 
+```{r, echo=TRUE,eval=TRUE}
+table1
+
+```
+ 
+ 
+## `case_when()`
+ 
+```{r, echo=TRUE,eval=TRUE}
+mutate(table1,tranche_age = case_when(
+              age<15 ~"moins de 15ans",
+              age >= 15 & age<30 ~ "[15-30 ans[",
+              age >= 30 & age<45 ~ "[30-45 ans[",
+              age>=45 ~"45 ans ou plus"
+                  )
+       )
+```
+
+## `arrange()` : trier un jeu de donn&eacute;es
+
+```{r, echo=FALSE,eval=TRUE}
+table1 <- tibble(prenom = c("Linda","Alex","Arthur","Pierre","Sophie","Paul"),
+                 age = c(14,33,48,55,20,8)
+                 )
+ 
+```
+ 
+ 
+```{r, echo=TRUE,eval=TRUE}
+table1
+
+```
+
+## `arrange()` : trier un jeu de donn&eacute;es
+
+```{r, echo=FALSE,eval=TRUE}
+table1 <- tibble(prenom = c("Linda","Alex","Arthur","Pierre","Sophie","Paul"),
+                 age = c(14,33,48,55,20,8)
+                 )
+ 
+```
+ 
+ 
+```{r, echo=TRUE,eval=TRUE}
+# tri croissant
+arrange(table1,age)
+
+```
+
+
+## `arrange()` : trier un jeu de donn&eacute;es
+
+```{r, echo=FALSE,eval=TRUE}
+table1 <- tibble(prenom = c("Linda","Alex","Arthur","Pierre","Sophie","Paul"),
+                 age = c(14,33,48,55,20,8)
+                 )
+ 
+```
+ 
+```{r, echo=TRUE,eval=TRUE}
+# tri décroissant
+arrange(table1,desc(age))
+```
+ 
+
+## `arrange()` : trier un jeu de donn&eacute;es {.flexbox .vcenter}
+
+![`arrange(table,A)`](images/min_arrange.png)
+
+## `filter()` : filtrer les lignes d'un jeu de donn&eacute;es
+
+<div class="columns-2">
+```{r, echo=FALSE,eval=TRUE}
+table1 <- tibble(prenom = c("Linda","Alex","Arthur","Pierre","Sophie","Paul"),
+                 age = c(14,33,48,55,20,8)
+                 )
+ 
+```
+ 
+ 
+```{r, echo=TRUE,eval=TRUE}
+table1
+filter(table1,age>20)
+```
+</div>
+
+## les conditions logiques
+ 
+Pour les retrouver &agrave; n'importe quel moment
+ 
+```{r,eval=FALSE,echo=TRUE}
+?Comparison
+?base::Logic
+```
+
+
+## `filter()` : filtrer les lignes d'un jeu de donn&eacute;es {.flexbox .vcenter}
+
+![`filter(table,condition)`](images/mini_Filter.png)
+
+## `summarize()` : r&eacute;sumer le jeu de donn&eacute;es
+
+ 
+```{r, echo=FALSE,eval=TRUE}
+table1 <- tibble(prenom = c("Linda","Alex","Arthur","Pierre","Sophie","Paul"),
+                 age = c(14,33,48,55,20,8)
+                 )
+ 
+```
+
+```{r, echo=TRUE,eval=TRUE}
+table1
+```
+ 
+## `summarize()` : r&eacute;sumer le jeu de donn&eacute;es
+
+ 
+```{r, echo=FALSE,eval=TRUE}
+table1 <- tibble(prenom = c("Linda","Alex","Arthur","Pierre","Sophie","Paul"),
+                 age = c(14,33,48,55,20,8)
+                 )
+ 
+```  
+ 
+```{r, echo=TRUE,eval=TRUE}
+# tri croissant
+summarize(table1,moyenne = mean(age),
+                 ecart_type = sd(age),
+                 maximum = max(age))
+```
+
+## Les fonctions de résumé
+
+fonctions statistiques classiques : `mean()`, `max()`, `min()`, `sd()`, `var()`, `quantile()`...
+
+fonction de comptage : `n()` ne prend JAMAIS de param&egrave;tres
+
+## {data-background=images/photo_neige.jpg data-background-size=cover .flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+Manipuler ses donn&eacute;es
+</div>
+</font>
+</div>
+
+## Les fonctions qui vous aident &agrave; utiliser `select()`
+ 
+Pour faciliter la s&eacute;lection de variables 
+ 
+* **`contains("..")`** : pour les colonnes qui contiennent une cha&icirc;ne de caract&egrave;res  
+* **`ends_with("..")`** : pour les colonnes qui se terminent par une cha&icirc;ne de caract&egrave;res  
+* **`num_range("x",1:4)`** : pour les colonnes x1,x2,x3,x4  
+* **`starts_with("..")`** : pour les colonnes qui commencent par une cha&icirc;ne de caract&egrave;res
+* **`A:F`** : toutes les colonnes de A &agrave; F  
+* **`-X`** : toutes les colonnes sauf X
+
+## Structure du jeu de donn&eacute;es
+
+### `glimpse()`
+```{r, echo=TRUE,eval=TRUE}
+glimpse(iris)
+```
+
+## Comparer le contenu de deux tables 
+
+### `setequal()`
+```{r, echo=TRUE,eval=TRUE}
+tab1 <- filter(iris,Species == "setosa")
+tab2 <- iris %>% filter(Species == "setosa")
+
+setequal(tab1,tab2)
+```
+
+### `identical()` : l'ordre est important
+
+## { .flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+J'encha&icirc;ne mes op&eacute;rations gr&acirc;ce au `%>%`
+</div>
+</font>
+</div>
+![](images/mini_pipe.png)
+
+## Une syntaxe plus efficace
+ 
+Lorsque l'on travaille avec `dplyr`, deux principes :
+ 
+* l'usage de verbes : une grammaire bien adapt&eacute;e au traitement d'un jeu de donn&eacute;es  
+    + `select, mutate`
+    + `filter, arrange`
+    + `summarise, group_by ...`
+ <br></br>  
+
+* L'usage du ` %>% ` (qui se prononce "païpe" et se lit "then" vient du package `magrittr`)
+
+## ` %>%` : un choc de simplification
+
+`a1 <- select(a, X, Y, Z)`   
+`a2 <- filter(a1, X > Y)`   
+`a3 <- mutate(a2, Q = X + Y + Z)`   
+`a4 <- summarise(a3, all = sum(Q))`   
+
+
+Ou en une seule fois
+<br></br>
+
+`summarise(` 
+  `mutate(`  
+        `filter(`
+            `select(a, X, Y, Z),X > Y),`  
+            `Q = X + Y + Z),`  
+            `all = sum(Q)`  
+            `)`  
+            `)`
+
+## Simplification {.flexbox .vcenter}
+
+`fonction(sujet,complement)`
+<br></br>
+devient  
+<br></br>
+`sujet %>% verbe %>% complement`
+
+## R&eacute;sum&eacute; des principaux verbes
+
+* **`filter`** : filtre de lignes en fonction de conditions logiques  
+* **`select`** : sélectionne certaines variables seulement  
+* **`arrange`** : trie le data.frame selon certaines variables  
+* **`mutate`** : crée de nouvelles variables  
+* **`group_by`** : crée des groupes  
+* **`summarise`** : agrège un data.frame ou un groupe en une ligne  
+* **`xxx_join`** : apparie 2 tables
+
+
+## {.flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+Jointures de tables
+</div>
+</font>
+</div>
+
+## Manipuler ses donn&eacute;es
+
+Apprendre &agrave; combiner des jeux de donn&eacute;es car dans la vraie vie, les donn&eacute;es d'int&ecirc;ret proviennent souvent de plusieurs tables. 
+
+### Avantages de `dplyr`
+* pr&eacute;serve l'ordre des lignes  
+* une syntaxe intuitive  
+* peuvent &ecirc;tre appliqu&eacute; &agrave; des bases de donn&eacute;es `(spark...)`
+
+## Plusieurs besoins 
+
+
+* Ajouter des colonnes d'une deuxi&egrave;me table &agrave; une premi&egrave;re table  
+<br></br>
+
+* Filtrer les donn&eacute;es d'une table gr&acirc;ce aux donn&eacute;es d'une deuxi&egrave;me table  
+<br></br>
+
+* Assembler des tables  
+
+
+## `left_join()` 
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+left_join(ind,inst,by = "nom")
+```
+
+## `left_join()` : &eacute;criture avec le `%>%` 
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+ind %>% 
+left_join(inst,by = "nom")
+```
+
+
+## `left_join()` {.flexbox .vcenter}
+![](images_gif/left-join.gif)
+
+## `left_join()` - jointure avec cl&eacute; multiple 
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Dupont","Durand","Leduc"),
+              prenom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Dupont","Durand","Levert"),
+               prenom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+```{r,echo=TRUE,eval=TRUE}
+left_join(ind,inst,by = c("nom","prenom"))
+```
+
+## `right_join()` 
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+right_join(ind,inst,by = "nom")
+```
+
+## `right_join()` : &eacute;criture avec le `%>%`  
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+ind %>% 
+right_join(inst,by = "nom")
+```
+
+## `right_join()` {.flexbox .vcenter}
+![](images_gif/right-join.gif)
+
+## `right_join()` - jointure avec cl&eacute; multiple 
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Dupont","Durand","Leduc"),
+              prenom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Dupont","Durand","Levert"),
+               prenom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+```{r,echo=TRUE,eval=TRUE}
+right_join(ind,inst,by = c("nom","prenom"))
+```
+
+
+## `inner_join()` 
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+inner_join(ind,inst,by = "nom")
+```
+
+## `inner_join()` : &eacute;criture avec le `%>%` 
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+ind %>% 
+inner_join(inst,by = "nom")
+```
+
+
+## `inner_join()` {.flexbox .vcenter}
+![](images_gif/inner-join.gif)
+
+
+## `inner_join()` - jointure avec cl&eacute; multiple 
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Dupont","Durand","Leduc"),
+              prenom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Dupont","Durand","Levert"),
+               prenom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+```{r,echo=TRUE,eval=TRUE}
+inner_join(ind,inst,by = c("nom","prenom"))
+```
+
+
+## `full_join()` 
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+full_join(ind,inst,by = "nom")
+```
+
+## `full_join()` : &eacute;criture avec le `%>%` 
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+ind %>% 
+full_join(inst,by = "nom")
+```
+
+
+## `full_join()` {.flexbox .vcenter}
+![](images_gif/full-join.gif)
+
+## `full_join()` - jointure avec cl&eacute; multiple 
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Dupont","Durand","Leduc"),
+              prenom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Dupont","Durand","Levert"),
+               prenom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+```{r,echo=TRUE,eval=TRUE}
+full_join(ind,inst,by = c("nom","prenom"))
+```
+
+## les valeurs manquantes 
+
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Dupont","Durand","Leduc"),
+              prenom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Dupont","Durand","Levert"),
+               prenom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo=TRUE,eval=TRUE}
+ind %>% 
+  full_join(inst,by=c("nom","prenom")) %>% 
+  mutate(missing_info = is.na(age)|is.na(joue)) %>% 
+  filter(missing_info == TRUE) %>% 
+  select(nom,prenom,age,joue)
+```
+
+## En r&eacute;sum&eacute; {.flexbox .vcenter}
+![](images/mini_resume_join.png)
+
+## {.flexbox .vcenter}
+
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+Jointures filtrantes
+</div>
+</font>
+</div>
+
+## `semi_join()`
+
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+semi_join(ind,inst,by = "nom")
+```
+
+## `semi_join()` : &eacute;criture avec le `%>%` 
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+ind %>% 
+semi_join(inst,by = "nom")
+```
+
+
+
+## `semi_join()` {.flexbox .vcenter}
+![](images_gif/semi-join.gif)
+
+
+## `semi_join()` - jointure avec cl&eacute; multiple 
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Dupont","Durand","Leduc"),
+              prenom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Dupont","Durand","Levert"),
+               prenom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+```{r,echo=TRUE,eval=TRUE}
+semi_join(ind,inst,by = c("nom","prenom"))
+```
+
+
+
+
+## `anti_join()`
+
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+anti_join(ind,inst,by = "nom")
+```
+
+## `anti_join()` : &eacute;criture avec le `%>%` 
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+ind %>% 
+anti_join(inst,by = "nom")
+```
+
+
+
+## `anti_join()` {.flexbox .vcenter}
+![](images_gif/anti-join.gif)
+
+
+## `anti_join()` - jointure avec cl&eacute; multiple 
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Dupont","Durand","Leduc"),
+              prenom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+inst <- tibble(nom = c("Dupont","Durand","Levert"),
+               prenom = c("Luc","Marie","Pierre"),
+               joue = c("guitare","piano","guitare"))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+inst
+
+```
+</div>
+```{r,echo=TRUE,eval=TRUE}
+anti_join(ind,inst,by = c("nom","prenom"))
+```
+
+
+## `union()`
+
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+more_ind <- tibble(nom = c("Paul","Sophie","Luc" ,"Gaby","Paul"),
+       age = c(7,8,10,11,7))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+more_ind
+
+```
+</div>
+
+
+## `union()`
+
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+more_ind <- tibble(nom = c("Paul","Sophie","Luc" ,"Gaby","Paul"),
+       age = c(7,8,10,11,7))
+
+```
+
+```{r,echo=TRUE,eval=TRUE}
+union(ind,more_ind) %>% 
+  print(n=8,width =Inf)
+```
+
+
+
+## `union()` {.flexbox .vcenter}
+![](images_gif/union.gif)
+
+
+## `setdiff()`
+
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+more_ind <- tibble(nom = c("Luc","Sophie","Gaby","Luc"),
+       age = c(10,8,11,10))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+more_ind
+
+```
+</div>
+
+
+## `setdiff()`
+
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+more_ind <- tibble(nom = c("Luc","Sophie","Gaby","Luc"),
+       age = c(10,8,11,10))
+
+```
+
+```{r,echo=TRUE,eval=TRUE}
+setdiff(ind,more_ind) %>% 
+  print(n=7,width =Inf)
+```
+
+
+## `setdiff()` {.flexbox .vcenter}
+![](images_gif/setdiff.gif)
+
+
+## `intersect()`
+
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+more_ind <- tibble(nom = c("Luc","Sophie","Gaby","Luc"),
+       age = c(10,8,11,10))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+more_ind
+
+```
+</div>
+
+
+## `intersect()`
+
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+more_ind <- tibble(nom = c("Luc","Sophie","Gaby","Luc"),
+       age = c(10,8,11,10))
+
+```
+
+```{r,echo=TRUE,eval=TRUE}
+intersect(ind,more_ind) %>% 
+  print(n=7,width =Inf)
+```
+
+## `intersect()` {.flexbox .vcenter}
+![](images_gif/intersect.gif)
+
+## {.flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+Concat&eacute;nation de tables
+</div>
+</font>
+</div> 
+
+
+## `bind_rows()`
+
+<div class="columns-2">
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+more_ind <- tibble(nom = c("Paul","Sophie","Gaby","Paul"),
+       age = c(7,8,11,7))
+
+```
+
+```{r,echo = FALSE,eval=TRUE}
+ind
+more_ind
+
+```
+</div>
+
+
+## `bind_rows()`
+
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+more_ind <- tibble(nom = c("Paul","Sophie","Gaby","Paul"),
+       age = c(7,8,11,7))
+
+```
+
+```{r,echo=TRUE,eval=TRUE}
+bind_rows(ind,more_ind) %>% 
+  print(n=7,width =Inf)
+```
+## `bind_rows()`
+
+
+```{r,echo=FALSE,eval=TRUE}
+
+ind <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+more_ind <- tibble(nom = c("Paul","Sophie","Gaby","Paul"),
+       age = c(7,8,11,7))
+
+```
+
+```{r,echo=TRUE,eval=TRUE}
+bind_rows(ind,more_ind, .id = "tab") %>% 
+  print(n=7,width =Inf)
+```
+
+## `bind_cols()`
+
+
+
+```{r,echo=FALSE,eval=TRUE}
+
+part1 <- tibble(nom = c("Luc","Marie","Tom"),
+       age = c(10,5,11))
+
+part2 <- tibble(animal = c("chien","chien","chat"),
+       option = c("dessin","musique","dessin"))
+
+```
+
+<div class="columns-2">
+```{r,echo=TRUE,eval=TRUE}
+part1
+```
+
+```{r,echo=TRUE,eval=TRUE}
+part2
+```
+</div>
+
+```{r,echo=TRUE,eval=TRUE}
+bind_cols(part1,part2)
+```
+
+
+## R&eacute;f&eacute;rences pour aller plus loin
+
+Beaucoup d'excellentes ressources pour d&eacute;buter avec `dplyr`
+
+* Cours Julien Barnier : <https://juba.github.io/tidyverse/10-dplyr.html>  
+* Site tidyverse : <https://www.tidyverse.org/>
+* Tutoriel Rencontres R 2017 Diane Beldame : <https://thinkr.fr/rr2017/presentation/#1>
+
+
+## Cr&eacute;dits
+<font size="4">
+<ul>
+<li>animation gif : package "tidy-animated"</li>  
+<li>livre R4DS <https://bookdown.org/asmundhreinn/r4ds-master/r-markdown-formats.html>  </li>
+</ul>
+
+</font>

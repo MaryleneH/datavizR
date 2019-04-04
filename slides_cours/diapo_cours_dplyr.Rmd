@@ -1,0 +1,73 @@
+---
+title: 'Dataviz - quelle strat&eacute;gie pour rep&eacute;rer mon package '
+author: "Marylene Henry"
+date: "31 janvier 2019"
+output:
+    ioslides_presentation:
+    css: style.css
+    logo: slides_cours/images/URFIST.jpg
+autosize: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(htmltools)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(plotly)
+library(lattice)
+options(tibble.print_max = 15)
+options(tibble.print_min = 6)
+```
+
+```{css firstpagebg, echo=FALSE}
+.title-slide {
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: lighten;
+}
+```
+
+
+
+## **L' essentiel...** {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/fond_ecran_accueil.jpg data-background-size=cover .bigger .flexbox .vcenter}
+
+<div class="black" >
+<font size="6.8">
+
+- Dplyr : un choc de simplification pour le traitement de vos jeux de donn&eacute;es avec `R`
+
+- Les principaux verbes de Dplyr
+
+- Le Pipe : comment cha&icirc;ner vos op&eacute;rations
+
+- Jointure de tables
+
+</font>
+</div>
+
+## Dplyr - un package du tidyverse {data-background=images/tidyverse.png data-background-size=cover}
+
+
+
+## Les types de visualisations
+
+
+## Le package `ggplot2` ?
+
+### Pourquoi il est int&eacute;ressant de conna&icirc;tre la synthxe de ce package ?
+<br></br>  
+
+> - bas&eacute; sur *"the grammar of graphics"*  
+> - &eacute;syst&egrave;me riche : beaucoup de packages reprennent la logique de `ggplot2`  
+> - un package du `tidyverse`
+
+
+
+
+
+
+
+
+
