@@ -1,12 +1,12 @@
 ---
-title: 'Dataviz - quelle strat&eacute;gie pour rep&eacute;rer mon package '
+title: 'Dataviz - des packages R au service de ma strat&eacute;gie de restitution de mes donn&eacute;es '
 author: "Marylene Henry"
-date: "31 janvier 2019"
+date: "avril 2019"
 output:
-    ioslides_presentation:
+  ioslides_presentation:
+    logo: "images/URFIST.jpg"
     css: style.css
-    logo: slides_cours/images/URFIST.jpg
-autosize: yes
+autosize: true
 ---
 
 ```{r setup, include=FALSE}
@@ -31,7 +31,7 @@ options(tibble.print_min = 6)
 
 
 
-## **L' essentiel...** {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/fond_ecran_accueil.jpg data-background-size=cover .bigger .flexbox .vcenter}
+## **Visualiser ses donn&eacute;es avec R** {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/fond_ecran_accueil.jpg data-background-size=cover .bigger .flexbox .vcenter}
 
 <div class="black" >
 <font size="6.8">
@@ -60,7 +60,7 @@ options(tibble.print_min = 6)
 <br></br>  
 
 > - bas&eacute; sur *"the grammar of graphics"*  
-> - &eacute;syst&egrave;me riche : beaucoup de packages reprennent la logique de `ggplot2`  
+> - &eacute;cosyst&egrave;me riche : beaucoup de packages reprennent la logique de `ggplot2`  
 > - un package du `tidyverse`
 
 
