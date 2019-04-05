@@ -102,10 +102,11 @@ options(tibble.print_min = 6)
 > - &eacute;cosyst&egrave;me riche : beaucoup de packages reprennent la logique de `ggplot2`  
 > - un package du `tidyverse`
 
+## Exemples de dataviz 
 
+[Exemples de datavisualisation](https://uxplanet.org/functional-visualization-vs-artistic-dashboarding-8764cc117aa9)
 
-
-
+[Exemples originaux de dataviz et musique](https://towardsdatascience.com/data-visualization-in-music-11fcd702c893)
 
 
 
