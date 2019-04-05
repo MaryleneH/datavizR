@@ -1,7 +1,7 @@
 ---
-title: 'Dataviz - des packages R au service de ma strat&eacute;gie de restitution de mes donn&eacute;es '
+title: 'Dataviz et packages R '
 author: "Marylene Henry"
-date: "avril 2019"
+date: "Avril 2019"
 output:
   ioslides_presentation:
     logo: "images/URFIST.jpg"
@@ -11,6 +11,7 @@ autosize: true
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+
 library(htmltools)
 library(dplyr)
 library(tibble)
@@ -26,37 +27,75 @@ options(tibble.print_min = 6)
   background-size: cover;
   background-position: center;
   background-blend-mode: lighten;
+  text-align: left;
+  
 }
 ```
 
 
 
-## **Visualiser ses donn&eacute;es avec R** {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/fond_ecran_accueil.jpg data-background-size=cover .bigger .flexbox .vcenter}
+## **Visualiser ses donn&eacute;es avec R** {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/feuille_outils2.jpg data-background-size=cover .bigger .flexbox .vcenter}
 
 <div class="black" >
-<font size="6.8">
+<font size="6.6">
 
-- Dplyr : un choc de simplification pour le traitement de vos jeux de donn&eacute;es avec `R`
+- Les 4 syst&egrave;mes graphiques en `R`
 
-- Les principaux verbes de Dplyr
-
-- Le Pipe : comment cha&icirc;ner vos op&eacute;rations
-
-- Jointure de tables
+- Quelle strat&eacute;gie adopter pour repr&eacute;senter mes donn&eacute;es
 
 </font>
 </div>
 
 ## Dplyr - un package du tidyverse {data-background=images/tidyverse.png data-background-size=cover}
 
+<div class="columns-2">
+<div class="green3">
+<br></br>
+<br></br>
+<font size="6">
+- Logiques de sythaxe des diff&eacute;rents packages  
+  
+- Options avanc&eacute;es de personnalisation    
+    + bdjd
+    + jhdiu
+</font>    
+</div>
+  
+<div class="green3">
+
+<br></br>
+<br></br>
+<font size="6">
+
+- Langage `R` Base ?
+
+- Le tidyverse ?
+
+</font>
+</div>  
+  
+</div>
 
 
-## Les types de visualisations
+## Ce que nous n'aurons pas le temps d'aborder  
 
+>- 
+
+## Etre efficace dans son apprentissage
+
+
+## Avoir les bons r&eacute;flexes
+
+1. Une communaut&eacute; riche  
+    +   
+    + `ROpenSci`  
+    + .... 
+    
+2. Regarder ce que font d'autres acteurs de la visualisation de la donn&eacute;e
 
 ## Le package `ggplot2` ?
 
-### Pourquoi il est int&eacute;ressant de conna&icirc;tre la synthxe de ce package ?
+### Pourquoi il est int&eacute;ressant de conna&icirc;tre la synthaxe de ce package ?
 <br></br>  
 
 > - bas&eacute; sur *"the grammar of graphics"*  
