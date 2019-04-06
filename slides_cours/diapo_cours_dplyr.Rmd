@@ -46,7 +46,7 @@ options(tibble.print_min = 6)
 </font>
 </div>
 
-## Dplyr - un package du tidyverse {data-background=images/tidyverse.png data-background-size=cover}
+## Dplyr - un package du tidyverse 
 
 <div class="columns-2">
 <div class="green3">
@@ -79,7 +79,7 @@ options(tibble.print_min = 6)
 
 ## Ce que nous n'aurons pas le temps d'aborder  
 
->- 
+>- blavajah
 
 ## Etre efficace dans son apprentissage
 
@@ -89,11 +89,40 @@ options(tibble.print_min = 6)
 1. Une communaut&eacute; riche  
     +   
     + `ROpenSci`  
-    + .... 
+    + blabla 
     
 2. Regarder ce que font d'autres acteurs de la visualisation de la donn&eacute;e
 
-## Le package `ggplot2` ?
+## Le package `lattice`
+
+### Bas&eacute; sur "Trellis graphics" (Cleveland)
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/auteur_lattice.PNG)
+
+## Les packages bas&eacute; sur chaque syst&egrave;me
+
+![source : Datacamp](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/recap_graph_pack.PNG)
+
+## Les arguments des fonctions de `lattice`  
+
+- Obligatoires
+    + `~ x` : premier argument   
+    + `data` : le dataset qui contient les variables  
+    
+- Optionnels    
+    + certains sont communs &agrave; toutes les fonctions   
+    + certains sont sp&eacute;cifiques &agrave; certaines fonctions  
+
+
+## Le package `lattice `  
+
+### But le plus important du package  
+
+- R&eacute;aliser des packages conditionnels  
+    + efficace pour d&eacute;tecter les sources de variabilit&eacute; d'un phn&eacute;nom&egrave;ne   
+    + Comparaison entre diff&eacute;rent sous-groupe de donn&eacute;es  
+
+
+## Le package `ggplot2` 
 
 ### Pourquoi il est int&eacute;ressant de conna&icirc;tre la synthaxe de ce package ?
 <br></br>  
