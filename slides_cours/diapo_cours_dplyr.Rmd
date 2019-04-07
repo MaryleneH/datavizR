@@ -154,8 +154,22 @@ Les 4 syst&egrave;mes graphiques sous `R`
 </font>
 </div>
 
-## 
+## Les 4 syst&egrave;mes graphiques  
 
+- *`Base graphics` :* le plus simple &agrave; apprendre  
+- *`Grid graphics` :* ensemble de modules puissants pour construire d'autres outils  
+- *`Lattice graphics` :* syst&egrave;me &agrave; caract&egrave;re g&eacute;n&eacute;ral bas&eacute; sur `Grid`  
+- *`ggplot2` :* bas&eacute;sur *"grammar of graphics"*
+
+
+## {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/feuille_base.jpg data-background-size=cover .flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+`Base graphics`
+</div>
+</font>
+</div>
 
 ## Le package `lattice`
 
