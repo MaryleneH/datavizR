@@ -41,7 +41,7 @@ options(tibble.print_min = 6)
 
 - Les 4 syst&egrave;mes graphiques en `R`
 
-- Quelle strat&eacute;gie adopter pour repr&eacute;senter mes donn&eacute;es
+- Quelle strat&eacute;gie adopter pour repr&eacute;senter mes donn&eacute;es ?
 
 </font>
 </div>
@@ -118,9 +118,10 @@ options(tibble.print_min = 6)
 ### But le plus important du package  
 
 - R&eacute;aliser des packages conditionnels  
-    + efficace pour d&eacute;tecter les sources de variabilit&eacute; d'un phn&eacute;nom&egrave;ne   
+    + efficace pour d&eacute;tecter les sources de variabilit&eacute; d'un ph&eacute;nom&egrave;ne   
     + Comparaison entre diff&eacute;rent sous-groupe de donn&eacute;es  
 
+## "trellis" object
 
 ## Le package `ggplot2` 
 
@@ -130,6 +131,55 @@ options(tibble.print_min = 6)
 > - bas&eacute; sur *"the grammar of graphics"*  
 > - &eacute;cosyst&egrave;me riche : beaucoup de packages reprennent la logique de `ggplot2`  
 > - un package du `tidyverse`
+
+## *Grammar of graphics*  
+
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/mini_grammar.PNG)
+
+## Grammar of graphics {data-background=images/livre_W.png data-background-size=auto}
+
+<div class = black>
+"The Grammar of Graphics"" de Leland Wilkinson a eu une influence importante sur la façon de penser les graphes  
+<br></br>
+<br></br>  
+2 principes 
+<ul> 
+<br></br>
+    <li> Graphique = différentes couches d’&eacute;l&eacute;ments grammaticaux </li>   
+<li>Des graphiques signifiants respectant des r&egrave;gles math&eacute;matiques et esth&eacute;tiques</li>
+</ul> 
+</div>
+
+## Le package `ggplot2` 
+
+- Le package ggplot2  permet la r&eacute;alisation de graphiques directement &agrave; partir d’un fichier d&eacute;tail, d’un fichier détail pond&eacute;r&eacute;, ou de donn&eacute;es agr&eacute;g&eacute;es   
+    + On initialise un graphique
+    + On y ajoute des calques   
+    
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/couches_ggplot2.PNG)  
+
+## El&eacute;ments essentiels de la grammaire   
+
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/tableau_couches.PNG)  
+
+## Tous les &eacute;l&eacute;ments de la grammaire  
+
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/mini_tab_complet.PNG)
+
+## ...on peut y ajouter d'autres couches  
+> - scales : l’&eacute;chelle des axes (lin&eacute;aire, logarithmique, &agrave; l’envers), les couleurs de remplissage   
+> - ggtitle(" ") : ajoute un titre principal au graphique   
+> - xlab(" ") : change le libell&eacute; des abscisses   
+> - ylab(" ") : change le libell&eacute; des ordonn&eacute;es   
+> - labs( title = " ", x = " ", y = " ") : modifie titre principal, libell&eacute; des abscisses, libell&eacute; des ordonn&eacute;es en une seule fonction   
+> - etc.
+
+
+## Les diff&eacute;rents types de graphiques 
+
+- statiques
+- interactifs
+- dynamiques
 
 ## Exemples de dataviz 
 

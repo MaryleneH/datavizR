@@ -59,3 +59,5 @@ shinyApp(ui = ui, server = server)
 # }
 # tagList(tab_list)
 # ```
+# 
+# ![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/livre_W.PNG)
