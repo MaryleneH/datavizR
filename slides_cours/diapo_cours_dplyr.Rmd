@@ -32,6 +32,21 @@ options(tibble.print_min = 6)
 }
 ```
 
+## {.flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+Pourquoi faire le choix de r&eacute;aliser ses graphiques sous R ?
+</div>
+</font>
+</div>  
+
+## {.flexbox .vcenter}
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/workflow_divise2.PNG)
+
+
+## {.flexbox .vcenter}
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/workflow_integre2.PNG)
 
 
 ## **Visualiser ses donn&eacute;es avec R** {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/feuille_outils2.jpg data-background-size=cover .bigger .flexbox .vcenter}
@@ -46,7 +61,50 @@ options(tibble.print_min = 6)
 </font>
 </div>
 
-## Dplyr - un package du tidyverse 
+
+## Ce que nous allons faire {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/dataviz_dessin.jpg data-background-size=cover .bigger .flexbox .vcenter}
+
+<div class="black" >
+<font size="6.6"> 
+
+- D&eacute;tailler les <div class="white" >logiques de synthaxe </div> 
+   
+- D&eacute;tailler les <div class="white" >options de personnalisation</div> 
+
+- Strat&eacute;gie de mise en oeuvre rapide
+
+</font>
+</div>  
+
+## Ce que nous n'aborderons pas {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/temps.jpg data-background-size=auto .bigger .flexbox .vcenter}   
+<div class="white" >
+<font size="6.6"> 
+
+- Cartographie  
+
+- Construction de graphiques anim&eacute;s   
+
+- Construction d'applications
+
+</font>
+</div>
+
+
+## {.flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+Comment &ecirc;tre efficace - construire mon graphique
+</div>
+</font>
+</div>
+
+## Comment &ecirc;tre efficace - construire mon graphique
+
+
+
+
+## h
 
 <div class="columns-2">
 <div class="green3">
@@ -77,12 +135,6 @@ options(tibble.print_min = 6)
 </div>
 
 
-## Ce que nous n'aurons pas le temps d'aborder  
-
->- blavajah
-
-## Etre efficace dans son apprentissage
-
 
 ## Avoir les bons r&eacute;flexes
 
@@ -92,6 +144,18 @@ options(tibble.print_min = 6)
     + blabla 
     
 2. Regarder ce que font d'autres acteurs de la visualisation de la donn&eacute;e
+
+## {.flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+Les 4 syst&egrave;mes graphiques sous `R`
+</div>
+</font>
+</div>
+
+## 
+
 
 ## Le package `lattice`
 
@@ -175,11 +239,49 @@ options(tibble.print_min = 6)
 > - etc.
 
 
+## Comment je construis mon graphique avec `ggplot2` ? 
+
+1. J'initialise mon graphique    
+    + Deux fonctions pour le faire : `qplot()` et `ggplot()`
+    
+2. Chaque &eacute;l&eacute;ment s'ajoute &agrave; un autre par le symbole +
+
+
+## Comment je construis mon graphique avec `ggplot2` ?
+```{r, echo=TRUE,fig.height=3,fig.width=5}
+
+library(ggplot2)
+ggplot(data = mtcars)+
+  geom_point(mapping = aes(x = mpg, y = hp))
+
+```
+
+
+## Une solution clique-bouton 
+
+### Id&eacute;ale lors des phases exploratoires
+    
+    
+Le package `esquisse`
+
+```{r,eval=FALSE,echo=TRUE}
+install.packages("esquisse")
+library(esquisse)
+
+```
+
+[Site GitHub DreamRs](https://github.com/dreamRs/esquisse) 
+
+https://www.dreamrs.fr/
+
+
+
+
 ## Les diff&eacute;rents types de graphiques 
 
 - statiques
 - interactifs
-- dynamiques
+- dynamiques / anim&eacute;s
 
 ## Exemples de dataviz 
 

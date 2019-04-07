@@ -61,3 +61,11 @@ shinyApp(ui = ui, server = server)
 # ```
 # 
 # ![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/livre_W.PNG)
+
+
+# library(knitr)
+# opts_chunk$set(fig.align = "center",
+#                fig.width = 1,
+#                fig.heigth = 1,
+#                cache = TRUE,
+#                cache.lazy = FALSE)
