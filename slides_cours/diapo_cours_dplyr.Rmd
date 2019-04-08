@@ -11,13 +11,14 @@ autosize: true
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-
+library(MASS)
 library(htmltools)
 library(dplyr)
 library(tibble)
 library(ggplot2)
 library(plotly)
 library(lattice)
+library(latticeExtra)
 options(tibble.print_max = 15)
 options(tibble.print_min = 6)
 ```
@@ -171,6 +172,68 @@ Les 4 syst&egrave;mes graphiques sous `R`
 </font>
 </div>
 
+## Le plus simple &agrave; manipuler 
+
+### En phase d'exploration  
+
+```{r, eval=TRUE,echo=TRUE}  
+plot(ChickWeight)
+```
+
+## Le plus simple &agrave; manipuler
+
+### En phase d'exploration  
+
+```{r, eval=TRUE,echo=TRUE}  
+plot(ChickWeight$weight)
+```
+
+## `Sunflowerplot`
+
+```{r, eval=TRUE,echo=FALSE}
+par(mfrow = c(1,2))
+plot(Boston$rad, Boston$tax, main ="plot")
+sunflowerplot(Boston$rad, Boston$tax, main ="Sunflowerplot")
+```
+
+
+## Autres graphiques de base
+
+- `boxplot`
+- `mosaic plot`  
+
+```{r,echo=FALSE,eval=TRUE}
+mosaicplot(cyl ~ gear, mtcars, main = "Mosaicplot")
+```
+
+## Logique de construction
+
+Les graphiques `R` de base peuvent &ecirc;tre construits gr&agrave;ce &agrave; deux types de fonctions :  
+
+- `fonctions de haut niveau`    
+    + exemple :`plot()`
+
+- `fonctions de bas niveau `    
+    + pour ajouter des caract&eacute;ristiques au graphique  
+    + `lines()`  
+    + `text()`
+    + `points()`
+    
+## La fonction `par()`  
+
+
+    
+
+## {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/feuille.jpg data-background-size=cover .flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+`Le package lattice`
+</div>
+</font>
+</div>
+
+
 ## Le package `lattice`
 
 ### Bas&eacute; sur "Trellis graphics" (Cleveland)
@@ -200,6 +263,40 @@ Les 4 syst&egrave;mes graphiques sous `R`
     + Comparaison entre diff&eacute;rent sous-groupe de donn&eacute;es  
 
 ## "trellis" object
+
+Le package permet de cr&eacute;er des objets qui pourront &ecirc;tre appel&eacute;s. 
+
+```{r, echo=TRUE}
+tplot <- densityplot(~rate.male + rate.female,
+                     data = USCancerRates, outer = T)
+
+class(tplot)
+```
+
+## "trellis" object
+
+```{r, echo=TRUE, collapse = TRUE, include=T}
+tplot <- densityplot(~rate.male + rate.female | state,
+                     data = USCancerRates, outer = T)
+head(summary(tplot)[[2]])
+```
+
+## "trellis" object
+
+Il faut voir cet objet comme un `array`
+
+```{r, echo=TRUE, collapse = TRUE, include=T}
+tplot <- densityplot(~rate.male + rate.female | state,
+                     data = USCancerRates, outer = T)
+dim(tplot)
+```
+
+
+## "trellis" object
+
+On peut ensuite mettre &agrave; jour un argument gr&acirc;ce &agrave; la fonction `update()`
+
+
 
 ## Le package `ggplot2` 
 
@@ -288,6 +385,11 @@ library(esquisse)
 
 https://www.dreamrs.fr/
 
+
+## Un package *helper* : `corrplot`
+
+
+## Des graphiques interactifs : une introduction
 
 
 
