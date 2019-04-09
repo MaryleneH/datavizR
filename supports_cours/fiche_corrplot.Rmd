@@ -1,0 +1,91 @@
+---
+title: "Le package corrplot"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(corrplot)
+library(ggplot2)
+mat_cor <- cor(mtcars)
+M <- mat_cor
+```
+
+## Premi&egrave;re &eacute;tape : calcul de la matrice de corr&eacute;lation
+
+```{r, echo=TRUE,eval=FALSE}
+library(corrplot)
+```
+
+```{r }
+mat_cor <- cor(mtcars)
+head(round(mat_cor,2))
+```
+
+## Corr&eacute;logramme : Visualisation de la matrice de corr&eacute;lation
+
+
+Argument      | Description
+------------- | ----------------------------------------
+corr          | La matrice de corr&eacute;lation &agrave; visualiser. Pour visualiser une matrice quelconque, utiliser is.corr=FALSE.
+method        | M&eacute;thodes de visualisation : “circle”, “color”, “number”, etc.
+
+## Les méthodes de visualisation
+
+Sept m&eacute;thodes de visualisation diff&eacute;rentes peuvent &ecirc;tre utilis&eacute;es :    
+
+- "circle",   
+- "square",   
+- "ellipse",   
+- "number",   
+- "shade",    
+- "color",    
+- "pie".
+
+```{r }
+corrplot(mat_cor, method="circle")
+```
+
+```{r }
+corrplot(mat_cor, method="pie")
+```
+
+
+```{r }
+corrplot(mat_cor, method="color")
+```
+
+```{r }
+corrplot(mat_cor, method="number")
+```
+
+```{r }
+corrplot(mat_cor, method="circle")
+```
+
+## les diff&eacute;rentes positions
+
+Il y a 3 dispositions différentes :   
+
+- "full" (par d&eacute;faut) : Affiche la Matrice de corr&eacute;lation en entier.   
+- "upper" : Affiche le triangle sup&eacute;rieur de la matrice de corr&eacute;lation.    
+- "lower" : Affiche le triangle inf&eacute;rieur de la matrice de corr&eacute;lation.   
+
+
+## Utilisation de palette de couleur
+
+```{r }
+# Utilisation de differents spectres de couleurs
+col<- colorRampPalette(c("red", "white", "blue"))(20)
+corrplot(mat_cor, type="upper", order="hclust", col=col)
+```
+
+
+```{r }
+# Changer la couleur de fond en lightblue
+corrplot(M, type="upper", order="hclust", col=c("black", "white"),
+         bg="lightblue")
+```
+
+
+*Pour en savoir plus  :* (http://www.sthda.com/french/wiki/visualiser-une-matrice-de-correlation-par-un-correlogramme)

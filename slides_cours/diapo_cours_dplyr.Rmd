@@ -11,6 +11,7 @@ autosize: true
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(corrplot)
 library(MASS)
 library(htmltools)
 library(dplyr)
@@ -222,7 +223,23 @@ Les graphiques `R` de base peuvent &ecirc;tre construits gr&agrave;ce &agrave; d
 ## La fonction `par()`  
 
 
-    
+## Des graphiques avanc&eacute;s  
+
+`bagplot()` : [exemples](https://datavizproject.com/data-type/bagplot/) 
+
+
+## Ajouter des d&eacute;tails &agrave; mon graphique
+
+
+## {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/feuille_grid.jpg data-background-size=auto .flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+`Grid graphics`
+</div>
+</font>
+</div>
+
 
 ## {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/feuille.jpg data-background-size=cover .flexbox .vcenter}
 <div class="gray3">
@@ -388,6 +405,16 @@ https://www.dreamrs.fr/
 
 ## Un package *helper* : `corrplot`
 
+```{r, echo=TRUE,eval=F}
+library(corrplot)
+```
+
+```{r,echo=TRUE, eval = TRUE, warning=FALSE,fig.height=3,fig.width=5}  
+correlation <- cor(mtcars)
+# Fonction du package corrplot
+corrplot(correlation,method = "ellipse")
+
+```
 
 ## Des graphiques interactifs : une introduction
 
