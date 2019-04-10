@@ -1,0 +1,437 @@
+---
+title: 'Dataviz et packages R '
+author: "Marylene Henry"
+date: "Avril 2019"
+output:
+  ioslides_presentation:
+    logo: "images/URFIST.jpg"
+    css: style.css
+autosize: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(corrplot)
+library(MASS)
+library(htmltools)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(plotly)
+library(lattice)
+library(latticeExtra)
+options(tibble.print_max = 15)
+options(tibble.print_min = 6)
+```
+
+```{css firstpagebg, echo=FALSE}
+.title-slide {
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: lighten;
+  text-align: left;
+  
+}
+```
+
+## {.flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+Pourquoi faire le choix de r&eacute;aliser ses graphiques sous R ?
+</div>
+</font>
+</div>  
+
+## {.flexbox .vcenter}
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/workflow_divise2.PNG)
+
+
+## {.flexbox .vcenter}
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/workflow_integre2.PNG)
+
+
+## **Visualiser ses donn&eacute;es avec R** {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/feuille_outils2.jpg data-background-size=cover .bigger .flexbox .vcenter}
+
+<div class="black" >
+<font size="6.6">
+
+- Les 4 syst&egrave;mes graphiques en `R`
+
+- Quelle strat&eacute;gie adopter pour repr&eacute;senter mes donn&eacute;es ?
+
+</font>
+</div>
+
+
+## Ce que nous allons faire {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/dataviz_dessin.jpg data-background-size=cover .bigger .flexbox .vcenter}
+
+<div class="black" >
+<font size="6.6"> 
+
+- D&eacute;tailler les <div class="white" >logiques de synthaxe </div> 
+   
+- D&eacute;tailler les <div class="white" >options de personnalisation</div> 
+
+- Strat&eacute;gie de mise en oeuvre rapide
+
+</font>
+</div>  
+
+## Ce que nous n'aborderons pas {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/temps.jpg data-background-size=auto .bigger .flexbox .vcenter}   
+<div class="white" >
+<font size="6.6"> 
+
+- Cartographie  
+
+- Construction de graphiques anim&eacute;s   
+
+- Construction d'applications
+
+</font>
+</div>
+
+
+## {.flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+Comment &ecirc;tre efficace - construire mon graphique
+</div>
+</font>
+</div>
+
+## Comment &ecirc;tre efficace - construire mon graphique
+
+
+
+
+## h
+
+<div class="columns-2">
+<div class="green3">
+<br></br>
+<br></br>
+<font size="6">
+- Logiques de sythaxe des diff&eacute;rents packages  
+  
+- Options avanc&eacute;es de personnalisation    
+    + bdjd
+    + jhdiu
+</font>    
+</div>
+  
+<div class="green3">
+
+<br></br>
+<br></br>
+<font size="6">
+
+- Langage `R` Base ?
+
+- Le tidyverse ?
+
+</font>
+</div>  
+  
+</div>
+
+
+
+## Avoir les bons r&eacute;flexes
+
+1. Une communaut&eacute; riche  
+    +   
+    + `ROpenSci`  
+    + blabla 
+    
+2. Regarder ce que font d'autres acteurs de la visualisation de la donn&eacute;e
+
+## {.flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+Les 4 syst&egrave;mes graphiques sous `R`
+</div>
+</font>
+</div>
+
+## Les 4 syst&egrave;mes graphiques  
+
+- *`Base graphics` :* le plus simple &agrave; apprendre  
+- *`Grid graphics` :* ensemble de modules puissants pour construire d'autres outils  
+- *`Lattice graphics` :* syst&egrave;me &agrave; caract&egrave;re g&eacute;n&eacute;ral bas&eacute; sur `Grid`  
+- *`ggplot2` :* bas&eacute;sur *"grammar of graphics"*
+
+
+## {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/feuille_base.jpg data-background-size=cover .flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+`Base graphics`
+</div>
+</font>
+</div>
+
+## Le plus simple &agrave; manipuler 
+
+### En phase d'exploration  
+
+```{r, eval=TRUE,echo=TRUE}  
+plot(ChickWeight)
+```
+
+## Le plus simple &agrave; manipuler
+
+### En phase d'exploration  
+
+```{r, eval=TRUE,echo=TRUE}  
+plot(ChickWeight$weight)
+```
+
+## `Sunflowerplot`
+
+```{r, eval=TRUE,echo=FALSE}
+par(mfrow = c(1,2))
+plot(Boston$rad, Boston$tax, main ="plot")
+sunflowerplot(Boston$rad, Boston$tax, main ="Sunflowerplot")
+```
+
+
+## Autres graphiques de base
+
+- `boxplot`
+- `mosaic plot`  
+
+```{r,echo=FALSE,eval=TRUE}
+mosaicplot(cyl ~ gear, mtcars, main = "Mosaicplot")
+```
+
+## Logique de construction
+
+Les graphiques `R` de base peuvent &ecirc;tre construits gr&agrave;ce &agrave; deux types de fonctions :  
+
+- `fonctions de haut niveau`    
+    + exemple :`plot()`
+
+- `fonctions de bas niveau `    
+    + pour ajouter des caract&eacute;ristiques au graphique  
+    + `lines()`  
+    + `text()`
+    + `points()`
+    
+## La fonction `par()`  
+
+
+## Des graphiques avanc&eacute;s  
+
+`bagplot()` : [exemples](https://datavizproject.com/data-type/bagplot/) 
+
+
+## Ajouter des d&eacute;tails &agrave; mon graphique
+
+
+## {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/feuille_grid.jpg data-background-size=auto .flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+`Grid graphics`
+</div>
+</font>
+</div>
+
+
+## {data-background=C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/feuille.jpg data-background-size=cover .flexbox .vcenter}
+<div class="gray3">
+<font size="7">
+<div class = "centered">
+`Le package lattice`
+</div>
+</font>
+</div>
+
+
+## Le package `lattice`
+
+### Bas&eacute; sur "Trellis graphics" (Cleveland)
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/auteur_lattice.PNG)
+
+## Les packages bas&eacute; sur chaque syst&egrave;me
+
+![source : Datacamp](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/recap_graph_pack.PNG)
+
+## Les arguments des fonctions de `lattice`  
+
+- Obligatoires
+    + `~ x` : premier argument   
+    + `data` : le dataset qui contient les variables  
+    
+- Optionnels    
+    + certains sont communs &agrave; toutes les fonctions   
+    + certains sont sp&eacute;cifiques &agrave; certaines fonctions  
+
+
+## Le package `lattice `  
+
+### But le plus important du package  
+
+- R&eacute;aliser des packages conditionnels  
+    + efficace pour d&eacute;tecter les sources de variabilit&eacute; d'un ph&eacute;nom&egrave;ne   
+    + Comparaison entre diff&eacute;rent sous-groupe de donn&eacute;es  
+
+## "trellis" object
+
+Le package permet de cr&eacute;er des objets qui pourront &ecirc;tre appel&eacute;s. 
+
+```{r, echo=TRUE}
+tplot <- densityplot(~rate.male + rate.female,
+                     data = USCancerRates, outer = T)
+
+class(tplot)
+```
+
+## "trellis" object
+
+```{r, echo=TRUE, collapse = TRUE, include=T}
+tplot <- densityplot(~rate.male + rate.female | state,
+                     data = USCancerRates, outer = T)
+head(summary(tplot)[[2]])
+```
+
+## "trellis" object
+
+Il faut voir cet objet comme un `array`
+
+```{r, echo=TRUE, collapse = TRUE, include=T}
+tplot <- densityplot(~rate.male + rate.female | state,
+                     data = USCancerRates, outer = T)
+dim(tplot)
+```
+
+
+## "trellis" object
+
+On peut ensuite mettre &agrave; jour un argument gr&acirc;ce &agrave; la fonction `update()`
+
+
+
+## Le package `ggplot2` 
+
+### Pourquoi il est int&eacute;ressant de conna&icirc;tre la synthaxe de ce package ?
+<br></br>  
+
+> - bas&eacute; sur *"the grammar of graphics"*  
+> - &eacute;cosyst&egrave;me riche : beaucoup de packages reprennent la logique de `ggplot2`  
+> - un package du `tidyverse`
+
+## *Grammar of graphics*  
+
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/mini_grammar.PNG)
+
+## Grammar of graphics {data-background=images/livre_W.png data-background-size=auto}
+
+<div class = black>
+"The Grammar of Graphics"" de Leland Wilkinson a eu une influence importante sur la façon de penser les graphes  
+<br></br>
+<br></br>  
+2 principes 
+<ul> 
+<br></br>
+    <li> Graphique = différentes couches d’&eacute;l&eacute;ments grammaticaux </li>   
+<li>Des graphiques signifiants respectant des r&egrave;gles math&eacute;matiques et esth&eacute;tiques</li>
+</ul> 
+</div>
+
+## Le package `ggplot2` 
+
+- Le package ggplot2  permet la r&eacute;alisation de graphiques directement &agrave; partir d’un fichier d&eacute;tail, d’un fichier détail pond&eacute;r&eacute;, ou de donn&eacute;es agr&eacute;g&eacute;es   
+    + On initialise un graphique
+    + On y ajoute des calques   
+    
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/couches_ggplot2.PNG)  
+
+## El&eacute;ments essentiels de la grammaire   
+
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/tableau_couches.PNG)  
+
+## Tous les &eacute;l&eacute;ments de la grammaire  
+
+![](C:/Users/maryl/Urfist/dataviz_avancee/slides_cours/images/mini_tab_complet.PNG)
+
+## ...on peut y ajouter d'autres couches  
+> - scales : l’&eacute;chelle des axes (lin&eacute;aire, logarithmique, &agrave; l’envers), les couleurs de remplissage   
+> - ggtitle(" ") : ajoute un titre principal au graphique   
+> - xlab(" ") : change le libell&eacute; des abscisses   
+> - ylab(" ") : change le libell&eacute; des ordonn&eacute;es   
+> - labs( title = " ", x = " ", y = " ") : modifie titre principal, libell&eacute; des abscisses, libell&eacute; des ordonn&eacute;es en une seule fonction   
+> - etc.
+
+
+## Comment je construis mon graphique avec `ggplot2` ? 
+
+1. J'initialise mon graphique    
+    + Deux fonctions pour le faire : `qplot()` et `ggplot()`
+    
+2. Chaque &eacute;l&eacute;ment s'ajoute &agrave; un autre par le symbole +
+
+
+## Comment je construis mon graphique avec `ggplot2` ?
+```{r, echo=TRUE,fig.height=3,fig.width=5}
+
+library(ggplot2)
+ggplot(data = mtcars)+
+  geom_point(mapping = aes(x = mpg, y = hp))
+
+```
+
+
+## Une solution clique-bouton 
+
+### Id&eacute;ale lors des phases exploratoires
+    
+    
+Le package `esquisse`
+
+```{r,eval=FALSE,echo=TRUE}
+install.packages("esquisse")
+library(esquisse)
+
+```
+
+[Site GitHub DreamRs](https://github.com/dreamRs/esquisse) 
+
+https://www.dreamrs.fr/
+
+
+## Un package *helper* : `corrplot`
+
+```{r, echo=TRUE,eval=F}
+library(corrplot)
+```
+
+```{r,echo=TRUE, eval = TRUE, warning=FALSE,fig.height=3,fig.width=5}  
+correlation <- cor(mtcars)
+# Fonction du package corrplot
+corrplot(correlation,method = "ellipse")
+
+```
+
+## Des graphiques interactifs : une introduction
+
+
+
+## Les diff&eacute;rents types de graphiques 
+
+- statiques
+- interactifs
+- dynamiques / anim&eacute;s
+
+## Exemples de dataviz 
+
+[Exemples de datavisualisation](https://uxplanet.org/functional-visualization-vs-artistic-dashboarding-8764cc117aa9)
+
+[Exemples originaux de dataviz et musique](https://towardsdatascience.com/data-visualization-in-music-11fcd702c893)
+
+
+
+
