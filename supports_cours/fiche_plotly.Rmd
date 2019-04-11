@@ -36,6 +36,8 @@ Les visualisations dynamiques et interactives participent de l’exp&eacute;rien
 
 ## Introduction &agrave; l'utilisation du package `plotly` 
 
+**`Plotly`** est avant tout une soci&eacute;t&eacute; bas&eacute;e &agrave; Montr&eacute;al. Elle d&eacute;veloppe des analyses de donn&eacute;es en ligne et des outils de visualisation interactifs. `Plotly` fournit plusieurs libraries open source permettant de r&eacute;aliser des graphiques interactifs. Ces librairies graphiques ont &eacute;t&eacute; d&eacute;velopp&eacute;es pour plusieurs langages : `R`, `Python`, `MATLAB`, `Perl`, `Julia`, `Arduino`, `REST`.
+
 ### cr&eacute;er son graphique interactif {.tabset}
 
 #### convertir un graphique `ggplot2`
