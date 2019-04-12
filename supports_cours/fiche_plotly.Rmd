@@ -13,6 +13,8 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(plotly)
 ```
 
 ## Graphiques interactifs {.tabset}
@@ -20,6 +22,8 @@ knitr::opts_chunk$set(echo = TRUE)
 Dans une visualisation statique, le nombre de dimensions de repr&eacute;sentation des donn&eacute;es est limit&eacute;. Repr&eacute;senter une information multidimensionnelle proprement &agrave; l’aide d’une repr&eacute;sentation statique est difficile. La visualisation statique reste id&eacute;ale lorsque l’information &agrave; repr&eacute;senter n’est pas tr&egrave;s complexe ou riche. Elle est requise lorsque le m&eacute;dium de publication est un support papier.
 
 Le package `plotly` vous permettra de r&eacute;aliser des graphiques int&eacute;ractifs. 
+
+![*galerie de graphiques réalisés avec Plotly*](https://upload.wikimedia.org/wikipedia/en/0/0a/Gallery_of_Plotly_Graphs.png)
 
 ### Graphiques statiques / dynamiques / int&eacute;ractif : quels usages ?
 
@@ -40,11 +44,48 @@ Les visualisations dynamiques et interactives participent de l’exp&eacute;rien
 
 ### cr&eacute;er son graphique interactif {.tabset}
 
+Le [Site API plotly pour `R`](https://plot.ly/r/) permet de prendre en main le package `plotly` pour `R`. Plusieurs tutoriels de r&eacute;alisation de graphiques sont disponibles. 
+
+__Installation du package__
+
+```{r,echo=TRUE,eval=FALSE}  
+install.packages("plotly")  
+# ou 
+devtools::install_github("ropensci/plotly")
+
+```
+<br></br>
+
+
 #### convertir un graphique `ggplot2`
+
+`ggplot2` est un package `R`permettant de r&eacute;aliser des graphiques statiques.  
+
+L'une des mani&egrave;re les plus simples de cr&eacute;er un graphique lorsque l'on est d&eacute;butant est de le cr&eacute;er &agrave; partir d'un graphique `ggplot2`.
+
+Exemple : *graphique `ggplot2`*   
+```{r,echo=TRUE,eval=TRUE,fig.height=3.5,fig.width=5}
+ggplot(mtcars)+
+  geom_point(aes(x=mpg,y=disp,color = factor(cyl)))+
+  theme_classic()
+```
+
+
+Exemple : *graphique `plotly`*   
+```{r,echo=TRUE,eval=TRUE,fig.height=4,fig.width=5}
+p <- ggplot(mtcars)+
+  geom_point(aes(x=mpg,y=disp,color = factor(cyl)))+
+  theme_classic()
+ggplotly(p)
+```
 
 #### Testons
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Les outils pour customiser son graphique `plotly`
+
+
 
 ### Un outil cl&eacute; customisable : `Hover info`
 
