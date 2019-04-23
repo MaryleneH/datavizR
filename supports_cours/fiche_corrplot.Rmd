@@ -13,6 +13,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 library(corrplot)
 library(ggplot2)
+library(corrr)
+library(dplyr)
 mat_cor <- cor(mtcars)
 M <- mat_cor
 ```
@@ -94,4 +96,31 @@ corrplot(M, type="upper", order="hclust", col=c("black", "white"),
 ```
 
 
+
+
 *Pour en savoir plus  :* (http://www.sthda.com/french/wiki/visualiser-une-matrice-de-correlation-par-un-correlogramme)
+
+
+## Un autre package int&eacute;ressant : `corrr`  
+
+```{r,echo=TRUE,eval=FALSE}
+
+install.packages("corrr")
+
+```
+
+Un example rapide pour se familiariser avec la syntaxe
+
+```{r,echo=TRUE,eval=TRUE}
+mtcars %>% 
+  correlate() %>% 
+  focus(mpg:drat, mirror = TRUE) %>% 
+  network_plot()
+```  
+
+
+```{r,echo=TRUE,eval=TRUE}
+
+cor(mtcars,use = "pairwise.complete.obs") %>% 
+  network_plot(min_cor = .6)
+```

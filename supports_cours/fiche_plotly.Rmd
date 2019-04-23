@@ -79,6 +79,10 @@ p <- ggplot(mtcars)+
 ggplotly(p)
 ```
 
+Cr&eacute;er un graphique intereactif est donc tr&egrave;s simple. Il suffit de conna&icirc;tre la synthaxe de `ggplot2` et d'utiliser la fonction `ggplotly()` 
+
+N&eacute;anmoins, si l'on souhaite utiliser toutes les options de personnalisation, il est pr&eacute;f&eacute;rable de conna&icirc;tre la synthaxe du package `plotly`.   
+
 #### Testons
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
