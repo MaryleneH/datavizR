@@ -109,7 +109,7 @@ install.packages("corrr")
 
 ```
 
-Un example rapide pour se familiariser avec la syntaxe
+Un exemple rapide pour se familiariser avec la syntaxe
 
 ```{r,echo=TRUE,eval=TRUE}
 mtcars %>% 

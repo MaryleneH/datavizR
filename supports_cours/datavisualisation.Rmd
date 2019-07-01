@@ -1,0 +1,26 @@
+---
+title: "datavisualisation"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## D&eacute;finition, datavisualisation, infographie...
+
+Derri&egrave;re le terme *datavisualisation* se cache parfois plusieurs d&eacute;finitions. Une d&eacute;finition collant bien &agrave; la r&eacute;alit&eacute; est celle-ci : la datavisualisation sert &agrave; pr&eacute;senter rapidement les donn&eacute;es er &agrave; les rendre lisibles.
+
+La datavisualisation est utilis&eacute;e dans de nombreux domaines - elle ne se limite pas aux chiffres. Elle se r&eacute;v&egrave;le tr&egrave;s utile dans l'analyse de textes, de discours, pour faire ressortir les faits marquants en les contextualisant. Le terme *data design* ou *design des donn&eacute;es* s'utilise &eacute;galement.
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
