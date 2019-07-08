@@ -1,0 +1,20 @@
+---
+title: "package lattice"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Notes de cours concernant le package `lattice`
+
+Ce package est souvent utilis&eacute; pour des donn&eacute;es de panel ou des s&eacute;ries temporelles. La documentation est moins fournie que celle du package `ggplot2`. 
+
+**Livre `lattice`** : faire un r&eacute;sum&eacute; des principaux &eacute;l&eacute;ments. 
+
+[exemples et code](http://lmdvr.r-forge.r-project.org/figures/figures.html)
+
+[exemples de graphiques r&eacute;alis&eacute;s avec `lattice`](https://procomun.wordpress.com/2015/04/14/mapping-flows-in-r-with-data-table-and-lattice/)
+
+Un avantage : les formules utilis&eacute;es dans le package `lattice` sont quasi-identiques &agrave; celles que l'on trouve dans les mod&egrave;les d'analyse de variance (`aov`) ou de r&eacute;gression lin&eacute;aire (`lm`). 
