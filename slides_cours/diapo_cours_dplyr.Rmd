@@ -1,7 +1,7 @@
 ---
 title: 'Dataviz et packages R '
 author: "Marylene Henry"
-date: "Avril 2019"
+date: "Dec 2019"
 output:
   ioslides_presentation:
     logo: "images/URFIST.jpg"
@@ -76,13 +76,12 @@ Pourquoi faire le choix de r&eacute;aliser ses graphiques sous R ?
 
 - Strat&eacute;gie de mise en oeuvre rapide  
 
-- Focus sur deux syst&egrave;me : `ggplot` et `plotly`
 
 </font>
 </div>  
 
 ## Ce que nous n'aborderons pas {data-background=images/temps.jpg data-background-size=auto .bigger .flexbox .vcenter}   
-<div class="white" >
+<div class="black" >
 <font size="6.6"> 
 
 - Cartographie  
