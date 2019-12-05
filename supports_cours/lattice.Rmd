@@ -1,5 +1,5 @@
 ---
-title: "package lattice"
+title: "Package lattice"
 output: html_document
 ---
 
@@ -9,7 +9,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Notes de cours concernant le package `lattice`
 
-Ce package est souvent utilis&eacute; pour des donn&eacute;es de panel ou des s&eacute;ries temporelles. La documentation est moins fournie que celle du package `ggplot2`. 
+Ce package est souvent utilis&eacute; pour des donn&eacute;es de panel ou des s&eacute;ries temporelles. La documentation est moins fournie que celle du package `ggplot2` mais elle est existante. 
+Ce package a pour objectif d'offri un ensemble d'outils cohérents pour produire des graphiques statiques. Il est orienté et met l'accent sur l'analyse multivari&eacute;e.
+
+**Les points forts** : il est relativement facile de commencer avec le package `lattice`. 
+Le package permet également de r&eacute;liser facilement des analyses exploratoires (ou &agrave; diffuser) multivari&eacute;es.
+
+*Un avantage* : les formules utilis&eacute;es dans le package `lattice` sont quasi-identiques &agrave; celles que l'on trouve dans les mod&egrave;les d'analyse de variance (`aov`) ou de r&eacute;gression lin&eacute;aire (`lm`).
+
+**les points de vigilance** : il faut comprendre le fonctionnement du graphique pour &ecirc;tre autonome dans la customization des graphiques.
+
+Il faut donc de la pratique et de l'exp&eacute;rience avec ce package pour utiliser toutes les possibilit&eacute;s du package.
+
+[références](http://lmdvr.r-forge.r-project.org/)
 
 **Livre `lattice`** : faire un r&eacute;sum&eacute; des principaux &eacute;l&eacute;ments. 
 
@@ -17,4 +29,4 @@ Ce package est souvent utilis&eacute; pour des donn&eacute;es de panel ou des s&
 
 [exemples de graphiques r&eacute;alis&eacute;s avec `lattice`](https://procomun.wordpress.com/2015/04/14/mapping-flows-in-r-with-data-table-and-lattice/)
 
-Un avantage : les formules utilis&eacute;es dans le package `lattice` sont quasi-identiques &agrave; celles que l'on trouve dans les mod&egrave;les d'analyse de variance (`aov`) ou de r&eacute;gression lin&eacute;aire (`lm`). 
+ 
